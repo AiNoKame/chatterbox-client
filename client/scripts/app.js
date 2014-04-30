@@ -31,11 +31,11 @@ var app = {};
     // listener on create room button - creates room in input
     $('.createRoom').on('click', function(event) {
       event.preventDefault();
-      var $roomSelect = $('#roomSelect');
-      var $input = $('#newRoom');
+      var $roomSelect = $('.roomSelect');
+      var $input = $('.newRoom');
       var newRoomName = $input.val();
       $input.val('');
-      $('#message').focus(); // shifts focus back to chat input
+      $('.message').focus(); // shifts focus back to chat input
       $('.currentRoom').text(newRoomName);
       app.roomname = newRoomName;
       if (!_.some($roomSelect.children(), function(item) {
@@ -50,7 +50,7 @@ var app = {};
     });
 
     // listener on room selection anchors - changes rooms
-    $('#roomSelect').on('click', '.roomname', function(event) {
+    $('.roomSelect').on('click', '.roomname', function(event) {
       event.preventDefault();
       if ($(this).hasClass('showAll')) {
         app.roomname = undefined; // nameless room shows all messages
@@ -62,7 +62,7 @@ var app = {};
     });
 
     // listener on username anchors - toggles friend (bold font)
-    $('#chats').on('click', '.username', function(event) {
+    $('.chats').on('click', '.username', function(event) {
       event.preventDefault();
       var username = $(this).text();
       if (app.friends[username] === undefined) {
@@ -111,8 +111,9 @@ var app = {};
         contentType: 'application/json',
         success: function (data) {
           app.fetch.inProgress = false;
-          $('#chats').empty();
-          $('#chats').append('<br>');
+          $('.chats').empty();
+          $('.chats').append('<br>');
+          console.log(data);
           _.each(data.results, function(result) {
             app.addMessage(result);
             app.addRoom(result);
@@ -129,7 +130,7 @@ var app = {};
 
   // takes text from input and transmits message {} to app.send
   app.handleSubmit = function() {
-    var $input = $('#message');
+    var $input = $('.message');
     var message = {
       username: app.username,
       text: $input.val(),
@@ -142,7 +143,7 @@ var app = {};
 
   // clears chat for repopulation
   app.clearMessages = function() {
-    $('#chats').empty();
+    $('.chats').empty();
   };
 
   // appends usernames and messages to chat window
@@ -156,12 +157,12 @@ var app = {};
     }
     $message.text(' ' + message.text);
     $message.prepend($username);
-    $('#chats').append($message);
+    $('.chats').append($message);
   };
 
   // adds new rooms to room list
   app.addRoom = function(message) {
-    var $roomSelect = $('#roomSelect');
+    var $roomSelect = $('.roomSelect');
     if (!_.some($roomSelect.children(), function(item) {
       return $(item).text() === (message.roomname || '');
     })) {

@@ -8,25 +8,31 @@
     <!-- dependencies -->
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
+    <script src="scripts/backbone.js"></script>
     <!-- your scripts -->
     <script src="scripts/config.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/backboneApp.js"></script>
   </head>
   <body>
-    <div id="main">
-      <input type="text" name="message" id="message"/>
+    <div class="main">
+      <input type="text" name="message" class="message"/>
       <button class="send">send</button>
-      <input type="text" name="newRoom" id="newRoom"/>
+      <input type="text" name="newRoom" class="newRoom"/>
       <button class="createRoom">create room</button>
       <h1>chatterbox: <span class="currentRoom"></span></h1>
-      <div id="roomSelect">
+      <div class="spinner"><img src="images/spiffygif_46x46.gif"></div>
+      <div class="roomSelect">
         <a href="#" class="roomname showAll">(show all messages)</a>
         <br>
       </div>
-      <div id="chats"></div>
+      <div class="chats"></div>
     </div>
     <script>
-      $(document).ready(app.init);
+      var chats = new Chats();
+      var chatsView = new ChatsView({model: chats});
+      $('.spinner').addClass('hidden');
+      //$('.chats').append(chatsView.render());
     </script>
   </body>
 </html>
