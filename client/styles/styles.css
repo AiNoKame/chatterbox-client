@@ -1,8 +1,9 @@
 body {
-  background: #eee;
+  background: teal;
   text-align: center;
   padding: 0 25px;
-  font-family: arial, sans-serif;
+  font-family: Trebuchet MS, sans-serif;
+  font-weight: 100;
 }
 
 .main {
@@ -13,6 +14,7 @@ body {
   padding: 50px 60px;
   border: solid #ddd;
   border-width: 0 1px 1px 1px;
+  border-radius: 10px;
 }
 
 .main h1 {
@@ -59,8 +61,13 @@ form input[type=text] {
   padding: 5px;
 }
 
+input {
+  width: 80%;
+}
+
 .chats .friend {
-  font-weight: bold;
+  font-weight: 900;
+  background-color: orange;
 }
 
 .chat {
@@ -92,7 +99,7 @@ form input[type=text] {
 }
 
 a.roomname {
-  color: green;
+  color: darkturquoise;
 }
 
 a.roomname:hover {
@@ -100,7 +107,7 @@ a.roomname:hover {
 }
 
 a.username {
-  color: blue;
+  color: teal;
 }
 
 a.username:hover {
